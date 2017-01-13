@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import Tabs from 'components/Tabs';
 
@@ -11,19 +11,20 @@ const WinesViewer = (props) => {
   return (
     <div>
       <div className={classNames(styles.viewerContainer, styles.header)}>
-        <h1>Chardonnay 2017</h1>
-        <p>Your Rating: 5 FREAKING STARS</p>
-        <p>Delivered on: MAY</p>
+        <h1>{props.currentWine.name}</h1>
+        <h2>{props.currentWine.varietal}, {props.currentWine.year}</h2>
+        <p>Rating: {props.currentWine.rating} out of 5</p>
+        <p>Delivered on: {props.currentWine.dateDelivered}</p>
       </div>
 
       <div className={styles.viewerContainer}>
         <Tabs
-         tabs={
+          tabs={
            WINE_VIEWER_KEYS.map((key) => ({
              key,
              name: WINE_VIEWER_TYPES[key].name,
              isActive: props.currentWineTab === key,
-             onClick: () => props.changeWineTab(key),
+             onClick: () => props.onWineTabClick(key),
            }))
          }
         />
@@ -33,6 +34,18 @@ const WinesViewer = (props) => {
       </div>
     </div>
   );
+};
+
+WinesViewer.propTypes = {
+  currentWineTab: PropTypes.string.isRequired,
+  currentWine: PropTypes.shape({
+    dateDelivered: PropTypes.string,
+    name: PropTypes.string,
+    rating: PropTypes.number,
+    varietal: PropTypes.string,
+    year: PropTypes.string,
+  }).isRequired,
+  onWineTabClick: PropTypes.func.isRequired,
 };
 
 export default WinesViewer;

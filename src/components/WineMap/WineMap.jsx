@@ -8,6 +8,7 @@ import { MAP_VIEWER_TYPES, MAP_VIEWER_KEYS } from 'constants/map-viewer-types';
 
 import styles from './styles.css';
 
+<<<<<<< HEAD
 import data from './data.json';
 
 export default class WineMap extends Component {
@@ -36,5 +37,5 @@ export default class WineMap extends Component {
 
 WineMap.propTypes = {
   currentMapTab: PropTypes.oneOf(MAP_VIEWER_KEYS).isRequired,
-  changeMapType: PropTypes.func.isRequired,
+  onMapTabClick: PropTypes.func.isRequired
 };
