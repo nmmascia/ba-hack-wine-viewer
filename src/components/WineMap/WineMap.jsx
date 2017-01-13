@@ -6,12 +6,12 @@ import GoogleMap from 'components/GoogleMap'
 
 import { MAP_VIEWER_TYPES, MAP_VIEWER_KEYS } from 'constants/map-viewer-types';
 
-import styles from './styles.css';
-
 import data from './data.json';
 
 export default class WineMap extends Component {
   render() {
+    const isHeatMap = this.props.currentMapTab === MAP_VIEWER_TYPES.HEAT_MAP.key;
+
     return (
       <div>
         <Tabs
@@ -24,7 +24,14 @@ export default class WineMap extends Component {
             }))
           }
         />
-        <GoogleMap markerLocations={data} applyHeat={this.props.currentMapTab === MAP_VIEWER_TYPES.HEAT_MAP.key} />
+        <GoogleMap
+          markerLocations={
+            isHeatMap ?
+            this.props.allUsersMappedWines :
+            this.props.currentUsersMappedWines
+          }
+          applyHeat={isHeatMap}
+        />
       </div>
     );
   }
@@ -33,4 +40,14 @@ export default class WineMap extends Component {
 WineMap.propTypes = {
   currentMapTab: PropTypes.oneOf(MAP_VIEWER_KEYS).isRequired,
   onMapTabClick: PropTypes.func.isRequired,
+  currentUsersMappedWines: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+  })).isRequired,
+  allUsersMappedWines: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number,
+    lat: PropTypes.number,
+    lng: PropTypes.number,
+  })).isRequired,
 };

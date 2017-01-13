@@ -1,4 +1,5 @@
 const SET_NOTES_FOR_WINE = 'SET_NOTES_FOR_WINE';
+const SET_WINES = 'SET_WINES';
 
 const initialState = {
   byId: {
@@ -57,4 +58,9 @@ export default (state = initialState, action) => {
 export const setNotesForWine = (id, notes) => ({
   type: SET_NOTES_FOR_WINE,
   payload: { id, notes },
+});
+
+export const setWines = (wines) => ({
+  type: SET_WINES,
+  payload: { wines },
 });
