@@ -28,7 +28,7 @@ export default class GoogleMap extends Component {
     const map = this.map;
 
     // add marker to each location
-    this.props.markerLocations.map((location) => {
+    this.props.markerLocations.forEach((location) => {
       const marker = new google.maps.Marker({
         position: {
           lat: location.lat,
@@ -42,7 +42,7 @@ export default class GoogleMap extends Component {
   }
 
   applyHeat() {
-    const data = this.props.markerLocations.map(function(location) {
+    const data = this.props.markerLocations.map((location) => {
       return new google.maps.LatLng(location.lat, location.lng);
     });
 
@@ -52,7 +52,7 @@ export default class GoogleMap extends Component {
     });
 
     heatmap.setMap(this.map);
-    var styledMapType = new google.maps.StyledMapType(mapStyle);
+    const styledMapType = new google.maps.StyledMapType(mapStyle);
 
     this.map.setZoom(4);
     this.map.setCenter({lat: 39.8282, lng: -98.5795});
@@ -63,8 +63,11 @@ export default class GoogleMap extends Component {
   centerMap() {
     const latlngBounds = new google.maps.LatLngBounds();
 
-    this.props.markerLocations.map(function(location){
-      latlngBounds.extend({lat: location.lat, lng: location.lng});
+    this.props.markerLocations.map((location) => {
+      latlngBounds.extend({
+        lat: location.lat,
+        lng: location.lng
+      });
     });
 
     // set center based on the aggregation of all the markers

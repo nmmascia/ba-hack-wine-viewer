@@ -1,5 +1,6 @@
 const SET_NOTES_FOR_WINE = 'SET_NOTES_FOR_WINE';
 const SET_WINES = 'SET_WINES';
+const SET_WINE_RATING = 'SET_WINE_RATING';
 
 const initialState = {
   byId: {},
@@ -40,6 +41,20 @@ export default (state = initialState, action) => {
         },
       };
     }
+    case SET_WINE_RATING: {
+      const { id, rating } = action.payload;
+
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [id]: {
+            ...state.byId[id],
+            rating,
+          },
+        },
+      };
+    }
     default: {
       return state;
     }
@@ -54,4 +69,9 @@ export const setNotesForWine = (id, notes) => ({
 export const setWines = (wines) => ({
   type: SET_WINES,
   payload: { wines },
+});
+
+export const setWineRating = (id, rating) => ({
+  type: SET_WINE_RATING,
+  payload: { id, rating },
 });

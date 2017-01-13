@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import React, { PropTypes } from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 
 import Tabs from 'components/Tabs';
 import TastingNotes from 'components/TastingNotes';
@@ -23,11 +24,19 @@ const renderTab = (props) => {
 };
 
 const WinesViewer = (props) => {
+  console.log(props.currentWine);
+
   return (
     <div>
       <div className={classNames(styles.viewerContainer, styles.header)}>
         <h1>{props.currentWine.name} {props.currentWine.year}</h1>
-        <p>Rating: {props.currentWine.rating} out of 5</p>
+        <StarRatingComponent
+          value={props.currentWine.rating}
+          starCount={5}
+          starColor="magenta"
+          emptyStarColor="#000"
+          onStarClick={props.onWineRatingChange}
+        />
         <p>Delivered on: {props.currentWine.dateDelivered}</p>
       </div>
 
@@ -63,6 +72,7 @@ WinesViewer.propTypes = {
   }).isRequired,
   onSaveTastingNotes: PropTypes.func.isRequired,
   onWineTabClick: PropTypes.func.isRequired,
+  onWineRatingChange: PropTypes.func.isRequired,
 };
 
 export default WinesViewer;

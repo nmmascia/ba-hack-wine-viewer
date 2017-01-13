@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import WinesViewer from 'components/WinesViewer';
 
 import { setWineType, setCurrentWineId } from 'reducers/wines-viewer';
-import { setNotesForWine } from 'reducers/wines';
+import { setNotesForWine, setWineRating } from 'reducers/wines';
 
 import { WINE_VIEWER_KEYS } from 'constants/wine-viewer-types';
 
@@ -43,6 +43,11 @@ class WinesContainer extends Component {
     dispatch(setNotesForWine(currentWine.id, notes));
   }
 
+  handleOnWineRatingChange(rating) {
+    const { dispatch, currentWine } = this.props;
+    dispatch(setWineRating(currentWine.id, rating));
+  }
+
   renderWinesViewer() {
     if (this.props.isLoading) {
       return <div>Loading...</div>;
@@ -54,6 +59,7 @@ class WinesContainer extends Component {
         currentWineTab={this.props.currentWineTab}
         onWineTabClick={::this.handleOnWineTabClick}
         onSaveTastingNotes={::this.handleOnSaveTastingNotes}
+        onWineRatingChange={::this.handleOnWineRatingChange}
       />
     );
   }
