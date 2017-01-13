@@ -13,37 +13,42 @@ export default class GoogleMap extends Component {
     this.setupMap();
   }
 
-  setupMap(){
+  setupMap() {
     this.map = new google.maps.Map(this.elem, {});
 
-    if(this.props.applyHeat){
+    if (this.props.applyHeat) {
       this.applyHeat();
-    }else{
+    } else {
       this.markMap();
       this.centerMap();
     }
   }
 
-  markMap(){
+  markMap() {
     const map = this.map;
 
-    //add marker to each location
-    this.props.markerLocations.map(function(location){
-      var marker = new google.maps.Marker({
-        position: {lat: location.lat, lng: location.lng},
-        map: map
+    // add marker to each location
+    this.props.markerLocations.map((location) => {
+      const marker = new google.maps.Marker({
+        position: {
+          lat: location.lat,
+          lng: location.lng,
+        },
+        map,
       });
+
+      marker.addListener('click', () => this.props.onMarkerClick(location.id));
     });
   }
 
-  applyHeat(){
-    var data = this.props.markerLocations.map(function(location){
+  applyHeat() {
+    const data = this.props.markerLocations.map(function(location) {
       return new google.maps.LatLng(location.lat, location.lng);
-    })
+    });
 
-    //create heatmap
-    var heatmap = new google.maps.visualization.HeatmapLayer({
-      data: data
+    // create heatmap
+    const heatmap = new google.maps.visualization.HeatmapLayer({
+      data,
     });
 
     heatmap.setMap(this.map);
@@ -55,21 +60,22 @@ export default class GoogleMap extends Component {
     this.map.setMapTypeId('styled_map');
   }
 
-  centerMap(){
+  centerMap() {
     const latlngBounds = new google.maps.LatLngBounds();
 
     this.props.markerLocations.map(function(location){
       latlngBounds.extend({lat: location.lat, lng: location.lng});
     });
 
-    //set center based on the aggregation of all the markers
+    // set center based on the aggregation of all the markers
     this.map.setCenter(latlngBounds.getCenter());
     this.map.fitBounds(latlngBounds);
   }
 
   render() {
     return (
-      <div className={styles.map}
+      <div
+        className={styles.map}
         ref={(elem) => {
           this.elem = elem;
         }}
@@ -80,5 +86,6 @@ export default class GoogleMap extends Component {
 
 GoogleMap.propTypes = {
   applyHeat: PropTypes.bool.isRequired,
-  markerLocations: PropTypes.array.isRequired
+  markerLocations: PropTypes.array.isRequired,
+  onMarkerClick: PropTypes.func.isRequired,
 };

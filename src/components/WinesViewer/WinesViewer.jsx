@@ -26,8 +26,7 @@ const WinesViewer = (props) => {
   return (
     <div>
       <div className={classNames(styles.viewerContainer, styles.header)}>
-        <h1>{props.currentWine.name}</h1>
-        <h2>{props.currentWine.varietal}, {props.currentWine.year}</h2>
+        <h1>{props.currentWine.name} {props.currentWine.year}</h1>
         <p>Rating: {props.currentWine.rating} out of 5</p>
         <p>Delivered on: {props.currentWine.dateDelivered}</p>
       </div>
