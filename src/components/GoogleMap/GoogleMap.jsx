@@ -2,6 +2,8 @@ import React, { Component, PropTypes } from 'react';
 
 import styles from './styles.css';
 
+import mapStyle from './mapStyle.json';
+
 export default class GoogleMap extends Component {
   componentDidMount() {
     this.setupMap();
@@ -18,9 +20,8 @@ export default class GoogleMap extends Component {
       this.applyHeat();
     }else{
       this.markMap();
+      this.centerMap();
     }
-
-    this.centerMap();
   }
 
   markMap(){
@@ -46,6 +47,12 @@ export default class GoogleMap extends Component {
     });
 
     heatmap.setMap(this.map);
+    var styledMapType = new google.maps.StyledMapType(mapStyle);
+
+    this.map.setZoom(4);
+    this.map.setCenter({lat: 39.8282, lng: -98.5795});
+    this.map.mapTypes.set('styled_map', styledMapType);
+    this.map.setMapTypeId('styled_map');
   }
 
   centerMap(){
