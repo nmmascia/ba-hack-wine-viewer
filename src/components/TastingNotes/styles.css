@@ -1,0 +1,14 @@
+@value darkBlue,cleanWhite from 'global/styles/colors.css';
+
+.header {
+  background-color: darkBlue;
+  color: cleanWhite;
+  text-align: center;
+  font-size: 1.25em;
+  padding: 10px 0;
+}
+
+.textArea {
+  height: 400px;
+  width: 100%;
+}
