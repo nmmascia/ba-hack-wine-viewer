@@ -4,6 +4,14 @@ import styles from './styles.css';
 
 export default class GoogleMap extends Component {
   componentDidMount() {
+    this.setupMap();
+  }
+
+  componentDidUpdate(nextProps, props) {
+    this.setupMap();
+  }
+
+  setupMap(){
     this.map = new google.maps.Map(this.elem, {});
 
     if(this.props.applyHeat){
