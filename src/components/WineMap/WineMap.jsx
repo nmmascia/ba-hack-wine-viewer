@@ -11,10 +11,6 @@ import styles from './styles.css';
 import data from './data.json';
 
 export default class WineMap extends Component {
-  constructor(props){
-    super(props);
-  }
-
   render() {
     return (
       <div>
@@ -24,11 +20,15 @@ export default class WineMap extends Component {
               key,
               name: MAP_VIEWER_TYPES[key].name,
               isActive: this.props.currentMapTab === key,
-              onClick: () => this.props.changeMapType(key),
+              onClick: () => this.props.onMapTabClick(key),
             }))
           }
         />
-        <GoogleMap markerLocations={data} applyHeat={false} zoom={7}/>
+        <GoogleMap
+          markerLocations={data}
+          applyHeat={false}
+          zoom={7}
+        />
       </div>
     );
   }
@@ -36,5 +36,5 @@ export default class WineMap extends Component {
 
 WineMap.propTypes = {
   currentMapTab: PropTypes.oneOf(MAP_VIEWER_KEYS).isRequired,
-  onMapTabClick: PropTypes.func.isRequired
+  onMapTabClick: PropTypes.func.isRequired,
 };
