@@ -8,7 +8,6 @@ import { MAP_VIEWER_TYPES, MAP_VIEWER_KEYS } from 'constants/map-viewer-types';
 
 import styles from './styles.css';
 
-<<<<<<< HEAD
 import data from './data.json';
 
 export default class WineMap extends Component {

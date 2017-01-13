@@ -3,6 +3,19 @@ import React, { Component, PropTypes } from 'react';
 import styles from './styles.css';
 
 export default class GoogleMap extends Component {
+  componentDidMount() {
+    this.map = new google.maps.Map(this.elem, {
+      zoom: 8,
+      center: {lat: 33, lng: -88}
+    });
+
+    if(this.props.applyHeat){
+      this.applyHeat();
+    }else{
+      this.markMap();
+    }
+  }
+
   markMap(){
     const map = this.map;
     const latlngBounds = new google.maps.LatLngBounds();
@@ -33,19 +46,6 @@ export default class GoogleMap extends Component {
     });
 
     heatmap.setMap(this.map);
-  }
-
-  componentDidMount() {
-    this.map = new google.maps.Map(this.elem, {
-      zoom: 8,
-      center: {lat: 33, lng: -88}
-    });
-
-    if(this.props.applyHeat){
-      this.applyHeat();
-    }else{
-      this.markMap();
-    }
   }
 
   render() {
