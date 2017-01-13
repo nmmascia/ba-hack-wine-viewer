@@ -1,80 +1,16 @@
 [
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":2,
-    "name": "second wine",
-    "lat": 37,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":2,
-    "name": "second wine",
-    "lat": 37,
-    "lng": -88
-  },
-  {
-    "id":2,
-    "name": "second wine",
-    "lat": 37,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
-  {
-    "id":1,
-    "name": "first wine",
-    "lat": 33,
-    "lng": -88
-  },
+{"lat":37.782, "lng":-122.447},
+{"lat":37.782, "lng":-122.445},
+{"lat":37.782, "lng":-122.443},
+{"lat":37.782, "lng":-122.441},
+{"lat":37.782, "lng":-122.439},
+{"lat":37.782, "lng":-122.437},
+{"lat":37.782, "lng":-122.435},
+{"lat":37.785, "lng":-122.447},
+{"lat":37.785, "lng":-122.445},
+{"lat":37.785, "lng":-122.443},
+{"lat":37.785, "lng":-122.441},
+{"lat":37.785, "lng":-122.439},
+{"lat":37.785, "lng":-122.437},
+{"lat":37.785, "lng":-122.435}
 ]
