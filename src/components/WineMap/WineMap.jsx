@@ -28,7 +28,7 @@ const WineMap = (props) => {
             key,
             name: MAP_VIEWER_TYPES[key].name,
             isActive: props.currentMapTab === key,
-            onClick: () => props.changeMapType(key),
+            onClick: () => props.onMapTabClick(key),
           }))
         }
       />
@@ -39,7 +39,7 @@ const WineMap = (props) => {
 
 WineMap.propTypes = {
   currentMapTab: PropTypes.oneOf(MAP_VIEWER_KEYS).isRequired,
-  changeMapType: PropTypes.func.isRequired,
+  onMapTabClick: PropTypes.func.isRequired,
 };
 
 export default WineMap;
