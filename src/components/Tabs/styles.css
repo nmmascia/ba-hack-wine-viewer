@@ -1,0 +1,11 @@
+.tabGroup {
+  composes: tabGroup from 'global/styles/tabs.css';
+}
+
+.tab {
+  composes: buttonTab from 'global/styles/tabs.css';
+}
+
+.active {
+  composes: buttonTabActive from 'global/styles/tabs.css';
+}

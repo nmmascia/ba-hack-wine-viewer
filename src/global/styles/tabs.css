@@ -1,0 +1,16 @@
+.tabGroup {
+  height: 50px;
+  text-align: left;
+}
+
+.buttonTab {
+  height: 50px;
+  background: none;
+  border: 5px solid #000;
+  outline: none;
+  cursor: pointer;
+}
+
+.buttonTabActive {
+  background-color: magenta;
+}
