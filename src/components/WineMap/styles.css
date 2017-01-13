@@ -3,14 +3,6 @@
   margin: 10px auto;
 }
 
-.mockMap {
-  background-image: url('./images/Geothermal_heat_map_US.png');
-  background-size: contain;
-  height: 590px;
-  width: 890px;
-  margin: 0 auto;
-}
-
 .tabGroup {
   composes: tabGroup from 'global/styles/tabs.css';
 }
