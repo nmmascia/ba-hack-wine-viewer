@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import WineMap from 'components/WineMap';
 
-import { changeMapType } from 'reducers/map-viewer';
+import { changeMapType, fetchWinePinData, fetchHeatMapData } from 'reducers/map-viewer';
 
 import { MAP_VIEWER_KEYS } from 'constants/map-viewer-types';
 
@@ -11,7 +11,23 @@ class MapContainer extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     currentMapTab: PropTypes.oneOf(MAP_VIEWER_KEYS).isRequired,
+    currentUsersMappedWines: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+    })).isRequired,
+    allUsersMappedWines: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.number,
+      lat: PropTypes.number,
+      lng: PropTypes.number,
+    })).isRequired,
   };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(fetchWinePinData(1));
+    dispatch(fetchHeatMapData());
+  }
 
   handleOnMapTabClick(mapType) {
     const { dispatch } = this.props;
@@ -23,6 +39,8 @@ class MapContainer extends Component {
       <WineMap
         currentMapTab={this.props.currentMapTab}
         onMapTabClick={::this.handleOnMapTabClick}
+        currentUsersMappedWines={this.props.currentUsersMappedWines}
+        allUsersMappedWines={this.props.allUsersMappedWines}
       />
     );
   }
@@ -31,5 +49,7 @@ class MapContainer extends Component {
 export default connect((state, props) => {
   return {
     currentMapTab: state.mapViewer.mapType,
+    currentUsersMappedWines: state.mapViewer.mappedPins,
+    allUsersMappedWines: state.mapViewer.heatMap,
   };
 })(MapContainer);
