@@ -1,0 +1,51 @@
+@value blue: #0F346C;
+@value lightBlue: #7581a7;
+@value darkBlue: #00214C;
+@value borderBlue: #1f2140;
+@value borderDarkBlue: #1f2140;
+@value toggleHoverBlue: #002F6C;
+
+@value gray: #737373;
+@value darkGray: #555;
+@value darkerGray: #404040;
+@value lightGray: #ccc;
+@value lighterGray: #e6e6e6;
+@value lighterGrayNav: #f7f7f7;
+@value lightBlueGray: #f7f7f9;
+@value toggleDefaultGray: #6e7194;
+@value toggleHoverGray: #cbccd9;
+
+@value cleanWhite: #ffffff;
+@value offWhite: #fafafc;
+
+@value green: #3ac25b;
+
+@value orange: #f26226;
+@value lightOrange: #ff6c2f;
+@value semiDarkOrange: #e7581d;
+@value darkOrange: #e7581d;
+
+@value red: #d64148;
+@value errorRed: #d64148;
+
+@value cancel: #9e3a00;
+
+@value linkColor: @value blue;
+
+@value footerBorder: #204778;
+
+@value alertWarning: #c09853;
+@value alertWarningDark: #fbeed5;
+@value alertWarningText: #fcf8e3;
+
+@value alertError: #e56c5c;
+@value alertErrorDark: #eed3d7;
+@value alertErrorText: #ffd2cc;
+
+@value alertSuccess: #3ac25b;
+@value alertSuccessDark: #d6e9c6;
+@value alertSuccessText: #d3ebce;
+
+@value alertInfo: #3a87ad;
+@value alertInfoDark: #bce8f1;
+@value alertInfoText: #d9edf7;
