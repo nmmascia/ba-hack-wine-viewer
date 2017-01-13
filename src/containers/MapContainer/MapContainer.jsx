@@ -13,7 +13,7 @@ class MapContainer extends Component {
     currentMapTab: PropTypes.oneOf(MAP_VIEWER_KEYS).isRequired,
   };
 
-  changeMapType(mapType) {
+  handleOnMapTabClick(mapType) {
     const { dispatch } = this.props;
     dispatch(changeMapType(mapType));
   }
@@ -22,7 +22,7 @@ class MapContainer extends Component {
     return (
       <WineMap
         currentMapTab={this.props.currentMapTab}
-        changeMapType={::this.changeMapType}
+        onMapTabClick={::this.handleOnMapTabClick}
       />
     );
   }
