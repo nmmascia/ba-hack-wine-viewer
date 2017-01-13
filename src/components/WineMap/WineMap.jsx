@@ -28,7 +28,7 @@ export default class WineMap extends Component {
             }))
           }
         />
-        <GoogleMap markerLocations={data} applyHeat={false} zoom={7}/>
+        <GoogleMap markerLocations={data} applyHeat={true} />
       </div>
     );
   }
