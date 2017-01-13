@@ -1,3 +1,5 @@
+@value darkBlue, toggleHoverBlue, cleanWhite, offWhite from 'global/styles/colors.css';
+
 .tabGroup {
   height: 50px;
   text-align: left;
@@ -5,12 +7,28 @@
 
 .buttonTab {
   height: 50px;
-  background: none;
-  border: 5px solid #000;
+  background-color: darkBlue;
   outline: none;
+  border: none;
   cursor: pointer;
+  color: cleanWhite;
+  border-radius: 4px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin: 0 4px;
+  padding: 0 10px;
 }
 
-.buttonTabActive {
-  background-color: magenta;
+.buttonTab:hover {
+  transition: background-color 0.5s ease-in-out;
+  background-color: toggleHoverBlue;
 }
+
+.buttonTabActive, .buttonTabActive:hover {
+  background-color: offWhite;
+  color: darkBlue;
+  font-weight: bold;
+  border: 5px solid darkBlue;
+  border-bottom: none;
+}
+

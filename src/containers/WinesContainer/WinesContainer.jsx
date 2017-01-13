@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import WinesViewer from 'components/WinesViewer';
 
 import { setWineType, setCurrentWineId } from 'reducers/wines-viewer';
+import { setNotesForWine } from 'reducers/wines';
 
 import { WINE_VIEWER_KEYS } from 'constants/wine-viewer-types';
 
@@ -13,7 +14,9 @@ class WinesContainer extends Component {
     currentWineTab: PropTypes.oneOf(WINE_VIEWER_KEYS).isRequired,
     currentWine: PropTypes.shape({
       dateDelivered: PropTypes.string,
+      id: PropTypes.number,
       name: PropTypes.string,
+      notes: PropTypes.string,
       rating: PropTypes.number,
       varietal: PropTypes.string,
       year: PropTypes.string,
@@ -21,7 +24,7 @@ class WinesContainer extends Component {
     wineCursors: PropTypes.shape({
       next: PropTypes.number,
       previous: PropTypes.number,
-    }),
+    }).isRequired,
   };
 
   handleOnWineTabClick(wineType) {
@@ -34,6 +37,11 @@ class WinesContainer extends Component {
     dispatch(setCurrentWineId(id));
   }
 
+  handleOnSaveTastingNotes(notes) {
+    const { dispatch, currentWine } = this.props;
+    dispatch(setNotesForWine(currentWine.id, notes));
+  }
+
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
@@ -42,6 +50,7 @@ class WinesContainer extends Component {
           currentWine={this.props.currentWine}
           currentWineTab={this.props.currentWineTab}
           onWineTabClick={::this.handleOnWineTabClick}
+          onSaveTastingNotes={::this.handleOnSaveTastingNotes}
         />
         <button style={{ height: '50px', width: '100px' }} onClick={() => this.handleOnChangeWine(this.props.wineCursors.next)}>Next</button>
       </div>
