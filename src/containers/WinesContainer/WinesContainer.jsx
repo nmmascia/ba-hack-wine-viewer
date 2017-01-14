@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import WinesViewer from 'components/WinesViewer';
 
 import { setWineType, setCurrentWineId } from 'reducers/wines-viewer';
-import { setNotesForWine } from 'reducers/wines';
+import { setNotesForWine, setWineRating } from 'reducers/wines';
 
 import { WINE_VIEWER_KEYS } from 'constants/wine-viewer-types';
 
@@ -20,11 +20,12 @@ class WinesContainer extends Component {
       rating: PropTypes.number,
       varietal: PropTypes.string,
       year: PropTypes.string,
-    }).isRequired,
+    }),
     wineCursors: PropTypes.shape({
       next: PropTypes.number,
       previous: PropTypes.number,
     }).isRequired,
+    isLoading: PropTypes.bool.isRequired,
   };
 
   handleOnWineTabClick(wineType) {
@@ -42,16 +43,32 @@ class WinesContainer extends Component {
     dispatch(setNotesForWine(currentWine.id, notes));
   }
 
+  handleOnWineRatingChange(rating) {
+    const { dispatch, currentWine } = this.props;
+    dispatch(setWineRating(currentWine.id, rating));
+  }
+
+  renderWinesViewer() {
+    if (this.props.isLoading) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <WinesViewer
+        currentWine={this.props.currentWine}
+        currentWineTab={this.props.currentWineTab}
+        onWineTabClick={::this.handleOnWineTabClick}
+        onSaveTastingNotes={::this.handleOnSaveTastingNotes}
+        onWineRatingChange={::this.handleOnWineRatingChange}
+      />
+    );
+  }
+
   render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around' }}>
         <button style={{ height: '50px', width: '100px' }} onClick={() => this.handleOnChangeWine(this.props.wineCursors.previous)}>Previous</button>
-        <WinesViewer
-          currentWine={this.props.currentWine}
-          currentWineTab={this.props.currentWineTab}
-          onWineTabClick={::this.handleOnWineTabClick}
-          onSaveTastingNotes={::this.handleOnSaveTastingNotes}
-        />
+        {this.renderWinesViewer()}
         <button style={{ height: '50px', width: '100px' }} onClick={() => this.handleOnChangeWine(this.props.wineCursors.next)}>Next</button>
       </div>
     );
@@ -76,5 +93,6 @@ export default connect((state, props) => {
     currentWineTab: state.winesViewer.wineType,
     currentWine: state.wines.byId[state.winesViewer.currentWineId],
     wineCursors: findCursors(state),
+    isLoading: !state.wines.byId[state.winesViewer.currentWineId],
   };
 })(WinesContainer);

@@ -30,6 +30,7 @@ export default class WineMap extends Component {
             this.props.allUsersMappedWines :
             this.props.currentUsersMappedWines
           }
+          onMarkerClick={this.props.onMarkerClick}
           applyHeat={isHeatMap}
         />
       </div>
@@ -50,4 +51,5 @@ WineMap.propTypes = {
     lat: PropTypes.number,
     lng: PropTypes.number,
   })).isRequired,
+  onMarkerClick: PropTypes.func.isRequired,
 };

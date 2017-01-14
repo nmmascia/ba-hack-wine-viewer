@@ -74,7 +74,7 @@ const setHeatMap = (data) => ({
 export const fetchWinePinData = (userId) => (dispatch) => {
   getUsersWineLocations(userId)
     .then((data) => {
-      // dispatch(setWines(data));
+      dispatch(setWines(data));
       dispatch(setMappedPins(data));
     })
     .catch(console.warn);

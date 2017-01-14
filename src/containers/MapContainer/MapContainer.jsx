@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import WineMap from 'components/WineMap';
 
 import { changeMapType, fetchWinePinData, fetchHeatMapData } from 'reducers/map-viewer';
+import { setCurrentWineId } from 'reducers/wines-viewer';
 
 import { MAP_VIEWER_KEYS } from 'constants/map-viewer-types';
 
@@ -34,11 +35,17 @@ class MapContainer extends Component {
     dispatch(changeMapType(mapType));
   }
 
+  handleOnMarkerClick(wineId) {
+    const { dispatch } = this.props;
+    dispatch(setCurrentWineId(wineId));
+  }
+
   render() {
     return (
       <WineMap
         currentMapTab={this.props.currentMapTab}
         onMapTabClick={::this.handleOnMapTabClick}
+        onMarkerClick={::this.handleOnMarkerClick}
         currentUsersMappedWines={this.props.currentUsersMappedWines}
         allUsersMappedWines={this.props.allUsersMappedWines}
       />

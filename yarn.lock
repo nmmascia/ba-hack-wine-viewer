@@ -1279,7 +1279,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@2.2.5:
+classnames@2.2.5, classnames@^2.2.0:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -5007,6 +5007,13 @@ react-spinjs@3.0.0:
   dependencies:
     spin.js "^2.3.1"
 
+react-star-rating-component@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/react-star-rating-component/-/react-star-rating-component-1.2.2.tgz#ded2d4fd78c14459808eb46d894dc892a903473e"
+  dependencies:
+    classnames "^2.2.0"
+    react "^15.3.1"
+
 react-test-renderer@15.4.2:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.4.2.tgz#27e1dff5d26d0e830f99614c487622bc831416f3"
@@ -5014,7 +5021,7 @@ react-test-renderer@15.4.2:
     fbjs "^0.8.4"
     object-assign "^4.1.0"
 
-react@15.4.2:
+react@15.4.2, react@^15.3.1:
   version "15.4.2"
   resolved "https://registry.yarnpkg.com/react/-/react-15.4.2.tgz#41f7991b26185392ba9bae96c8889e7e018397ef"
   dependencies:

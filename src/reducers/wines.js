@@ -1,40 +1,32 @@
 const SET_NOTES_FOR_WINE = 'SET_NOTES_FOR_WINE';
 const SET_WINES = 'SET_WINES';
+const SET_WINE_RATING = 'SET_WINE_RATING';
 
 const initialState = {
-  byId: {
-    1: {
-      dateDelivered: new Date().toISOString(),
-      id: 1,
-      name: 'Las Canovas',
-      rating: 5,
-      varietal: 'Pinot Grigio',
-      year: '2017',
-      notes: '',
-    },
-    2: {
-      dateDelivered: new Date().toISOString(),
-      id: 2,
-      name: 'Tathata',
-      rating: 5,
-      varietal: 'Pinot Grigio',
-      year: '2017',
-      notes: '',
-    },
-    3: {
-      dateDelivered: new Date().toISOString(),
-      id: 3,
-      name: 'Asilomar Trail',
-      rating: 5,
-      varietal: 'Pinot Grigio',
-      year: '2017',
-      notes: '',
-    },
-  },
+  byId: {},
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case SET_WINES: {
+      const byId = action.payload.wines.reduce((acc, curr) => {
+        return {
+          ...acc,
+          [curr.id]: {
+            id: curr.id,
+            name: curr.name,
+            year: curr.year,
+            notes: '',
+            rating: 0,
+          },
+        };
+      }, {});
+
+      return {
+        ...state,
+        byId,
+      };
+    }
     case SET_NOTES_FOR_WINE: {
       const { id, notes } = action.payload;
 
@@ -45,6 +37,20 @@ export default (state = initialState, action) => {
           [id]: {
             ...state.byId[id],
             notes,
+          },
+        },
+      };
+    }
+    case SET_WINE_RATING: {
+      const { id, rating } = action.payload;
+
+      return {
+        ...state,
+        byId: {
+          ...state.byId,
+          [id]: {
+            ...state.byId[id],
+            rating,
           },
         },
       };
@@ -63,4 +69,9 @@ export const setNotesForWine = (id, notes) => ({
 export const setWines = (wines) => ({
   type: SET_WINES,
   payload: { wines },
+});
+
+export const setWineRating = (id, rating) => ({
+  type: SET_WINE_RATING,
+  payload: { id, rating },
 });
