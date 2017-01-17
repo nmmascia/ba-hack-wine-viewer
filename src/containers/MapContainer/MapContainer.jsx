@@ -54,9 +54,25 @@ class MapContainer extends Component {
 }
 
 export default connect((state, props) => {
+  const currentUsersMappedWines = state.mapViewer.mappedPins.map((pin) => {
+    const wine = state.wines.byId[pin.id];
+    if(wine){
+      return {
+        name: wine.name,
+        description: wine.description,
+        bottle_image: wine.bottle_image,
+        rating: wine.rating,
+        ...pin
+      }
+    }else{
+      return pin
+    }
+
+  });
+
   return {
     currentMapTab: state.mapViewer.mapType,
-    currentUsersMappedWines: state.mapViewer.mappedPins,
+    currentUsersMappedWines,
     allUsersMappedWines: state.mapViewer.heatMap,
   };
 })(MapContainer);

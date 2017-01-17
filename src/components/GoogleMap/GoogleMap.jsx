@@ -1,8 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 
+import ReactDOMServer from 'react-dom/server';
+
 import styles from './styles.css';
 
 import mapStyle from './mapStyle.json';
+
+import InfoWindow from 'components/InfoWindow';
 
 export default class GoogleMap extends Component {
   componentDidMount() {
@@ -13,6 +17,10 @@ export default class GoogleMap extends Component {
     this.setupMap();
   }
 
+  shouldComponentUpdate(nextProps) {
+    return this.props.applyHeat !== nextProps.applyHeat || this.props.markerLocations.length !== nextProps.markerLocations.length;
+  }
+
   setupMap() {
     this.map = new google.maps.Map(this.elem, {});
 
@@ -20,7 +28,6 @@ export default class GoogleMap extends Component {
       this.applyHeat();
     } else {
       this.markMap();
-      this.centerMap();
     }
   }
 
@@ -37,8 +44,19 @@ export default class GoogleMap extends Component {
         map,
       });
 
-      marker.addListener('click', () => this.props.onMarkerClick(location.id));
+      const out = ReactDOMServer.renderToString(<InfoWindow data={location} />)
+      const infowindow = new google.maps.InfoWindow({
+        content: out
+      });
+
+      marker.addListener('click', () => {
+        infowindow.open(map, marker);
+        this.props.onMarkerClick(location.id)
+      });
     });
+
+    this.map.setZoom(3);
+    this.map.setCenter({lat: 40, lng: -10});
   }
 
   applyHeat() {
@@ -52,6 +70,7 @@ export default class GoogleMap extends Component {
     });
 
     heatmap.setMap(this.map);
+    heatmap.set('radius', 20);
     const styledMapType = new google.maps.StyledMapType(mapStyle);
 
     this.map.setZoom(4);

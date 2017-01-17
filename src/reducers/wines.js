@@ -13,11 +13,10 @@ export default (state = initialState, action) => {
         return {
           ...acc,
           [curr.id]: {
-            id: curr.id,
-            name: curr.name,
-            year: curr.year,
+            ...curr,
             notes: '',
             rating: 0,
+
           },
         };
       }, {});

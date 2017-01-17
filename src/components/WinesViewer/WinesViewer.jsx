@@ -4,6 +4,7 @@ import StarRatingComponent from 'react-star-rating-component';
 
 import Tabs from 'components/Tabs';
 import TastingNotes from 'components/TastingNotes';
+import InfoWindow from 'components/InfoWindow';
 
 import { WINE_VIEWER_TYPES, WINE_VIEWER_KEYS } from 'constants/wine-viewer-types';
 
@@ -18,6 +19,12 @@ const renderTab = (props) => {
           notes={props.currentWine.notes}
           onSaveNotes={props.onSaveTastingNotes}
         />
+      );
+    }
+
+    case WINE_VIEWER_TYPES.WINE_INFORMATION.key: {
+      return (
+        <InfoWindow data={props.currentWine} />
       );
     }
   }
